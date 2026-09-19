@@ -4,52 +4,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portafolio Personal</title>
+
+<!-- Bootstrap 5 (CDN) -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
 <style>
-    * { box-sizing: border-box; }
+    :root {
+        --color-rojo: #c0392b;
+    }
     body {
-        font-family: 'Segoe UI', Arial, sans-serif;
         background-color: #f2f2f2;
-        margin: 0;
-        padding: 20px;
-        color: #222;
     }
-    .contenedor {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        max-width: 1000px;
-        margin: 0 auto;
-    }
-    .columna {
-        background: #fff;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        padding: 20px;
-        flex: 1;
-        min-width: 300px;
-        box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-    }
-    h2 {
-        color: #c0392b;
-        border-bottom: 2px solid #c0392b;
-        padding-bottom: 5px;
-        margin-top: 0;
-    }
-    h3 {
-        color: #c0392b;
-        border-bottom: 1px solid #999;
-        padding-bottom: 4px;
-    }
-    .presentacion {
-        display: flex;
-        gap: 15px;
-        align-items: flex-start;
-        margin-bottom: 25px;
+    .titulo-rojo {
+        color: var(--color-rojo);
+        border-bottom: 2px solid var(--color-rojo);
+        padding-bottom: 6px;
     }
     .foto-placeholder {
         width: 100px;
         height: 100px;
         border: 2px dashed #999;
+        border-radius: 6px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -75,12 +50,8 @@
         opacity: 0;
         cursor: pointer;
     }
-    .foto-placeholder span.texto-foto {
+    .foto-placeholder .texto-foto {
         pointer-events: none;
-    }
-    .texto-presentacion p {
-        margin: 0 0 8px 0;
-        border-bottom: 1px solid #ddd;
     }
     #descripcion {
         padding: 4px;
@@ -91,146 +62,122 @@
         background-color: #f9f9f9;
     }
     #descripcion:focus {
-        outline: 2px dashed #c0392b;
+        outline: 2px dashed var(--color-rojo);
         background-color: #fffaf0;
     }
-    ul {
-        padding-left: 20px;
-        margin-top: 5px;
-    }
-    li {
-        margin-bottom: 6px;
-    }
-    .fila-agregar {
-        display: flex;
-        gap: 8px;
-        margin-top: 10px;
-        align-items: center;
-    }
-    .fila-agregar input[type="text"] {
-        flex: 1;
-        padding: 6px 8px;
-        border: 1px solid #bbb;
-        border-radius: 4px;
-    }
-    .btn-agregar {
-        width: 30px;
-        height: 30px;
-        border: 1px solid #555;
-        background: #eee;
-        border-radius: 4px;
-        font-weight: bold;
-        cursor: pointer;
-    }
-    .btn-agregar:hover {
-        background: #ddd;
-    }
     footer {
-        text-align: center;
-        margin-top: 20px;
-        font-size: 13px;
         color: #777;
-        border-top: 1px solid #ddd;
-        padding-top: 10px;
+        font-size: 13px;
     }
 </style>
 </head>
 <body>
 
-<div class="contenedor">
+<div class="container py-4">
+    <div class="row g-4">
 
-    <!-- Columna izquierda: Portafolio -->
-    <div class="columna">
-        <h2>Portafolio</h2>
+        <!-- Columna izquierda: Portafolio -->
+        <div class="col-12 col-md-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h2 class="titulo-rojo">Portafolio</h2>
 
-        <div class="presentacion">
-            <label class="foto-placeholder" for="input-foto">
-                <img id="foto-preview" src="" alt="Foto de perfil">
-                <span class="texto-foto" id="texto-foto">Elegir foto</span>
-                <input type="file" id="input-foto" accept="image/*">
-            </label>
-            <div class="texto-presentacion">
-                <p id="descripcion" contenteditable="true" spellcheck="true">Mi nombre es Ever Jonatan Delgado Chaguendo, tengo 20 años de edad y soy estudiante de ingenieria en sistemas.</p>
+                    <div class="d-flex gap-3 align-items-start mb-4 mt-3">
+                        <label class="foto-placeholder" for="input-foto">
+                            <img id="foto-preview" src="" alt="Foto de perfil">
+                            <span class="texto-foto" id="texto-foto">Elegir foto</span>
+                            <input type="file" id="input-foto" accept="image/*">
+                        </label>
+                        <p id="descripcion" class="mb-0 flex-grow-1" contenteditable="true" spellcheck="true">
+                            Mi nombre es Ever Jonatan Delgado Chaguendo, tengo 20 años de edad y soy estudiante de ingenieria en sistemas.
+                        </p>
+                    </div>
+
+                    <h3 class="titulo-rojo h5">Historial Académico</h3>
+                    <ul id="lista-academica" class="list-group list-group-flush mb-3">
+                        <li class="list-group-item">Colegio: Institucion Educativa Insdustrial Luis Madina</li>
+                        <li class="list-group-item">Universidad: Universidad Santiago de Cali</li>
+                        <li class="list-group-item">Cursos y Diplomados: Diplomado en ciberseguridad de redes</li>
+                    </ul>
+
+                    <div class="input-group">
+                        <button class="btn btn-outline-secondary" id="btn-academico" type="button">+</button>
+                        <input type="text" id="input-academico" class="form-control" placeholder="Agregar">
+                    </div>
+                </div>
             </div>
         </div>
 
-        <h3>Historial Académico</h3>
-        <ul id="lista-academica">
-            <li>Colegio: Institucion Educativa Insdustrial Luis Madina</li>
-            <li>Universidad: Universidad Santiago de Cali</li>
-            <li>Cursos y Diplomados: Diplomado en ciberseguridad de redes</li>
-        </ul>
+        <!-- Columna derecha: Historial laboral -->
+        <div class="col-12 col-md-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h2 class="titulo-rojo">Historial laboral</h2>
 
-        <div class="fila-agregar">
-            <button class="btn-agregar" id="btn-academico">+</button>
-            <input type="text" id="input-academico" placeholder="Agregar">
+                    <ul id="lista-laboral" class="list-group list-group-flush mb-3 mt-3">
+                        <li class="list-group-item">Profesor de ecuaciones de manera informal</li>
+                        <li class="list-group-item">Cargador de mudanzas de manera informal</li>
+                    </ul>
+
+                    <div class="input-group">
+                        <button class="btn btn-outline-secondary" id="btn-laboral" type="button">+</button>
+                        <input type="text" id="input-laboral" class="form-control" placeholder="Agregar">
+                    </div>
+                </div>
+            </div>
         </div>
+
     </div>
 
-    <!-- Columna derecha: Historial laboral -->
-    <div class="columna">
-        <h2>Historial laboral</h2>
-
-        <ul id="lista-laboral">
-            <li>Profesor de ecuaciones de manera informal</li>
-            <li>Cargador de mudanzas de manera informal</li>
-        </ul>
-
-        <div class="fila-agregar">
-            <button class="btn-agregar" id="btn-laboral">+</button>
-            <input type="text" id="input-laboral" placeholder="Agregar">
-        </div>
-    </div>
-
+    <footer class="text-center border-top mt-4 pt-3">
+        footer, 2026
+    </footer>
 </div>
 
-<footer>
-    footer, 2026
-</footer>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-    // Agregar ítem al Historial Académico (usa el cajón de texto que está al lado del botón)
+    // Agregar ítem al Historial Académico
     const btnAcademico = document.getElementById('btn-academico');
     const inputAcademico = document.getElementById('input-academico');
     const listaAcademica = document.getElementById('lista-academica');
 
-    btnAcademico.addEventListener('click', function () {
+    function agregarAcademico() {
         const texto = inputAcademico.value.trim();
         if (texto !== '') {
             const nuevoItem = document.createElement('li');
+            nuevoItem.className = 'list-group-item';
             nuevoItem.textContent = texto;
             listaAcademica.appendChild(nuevoItem);
             inputAcademico.value = '';
         }
-    });
+    }
 
-    // Permitir agregar presionando Enter en el campo académico
+    btnAcademico.addEventListener('click', agregarAcademico);
     inputAcademico.addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') {
-            btnAcademico.click();
-        }
+        if (e.key === 'Enter') agregarAcademico();
     });
 
-    // Agregar ítem al Historial Laboral (usa el cajón de texto que está al lado del botón)
+    // Agregar ítem al Historial Laboral
     const btnLaboral = document.getElementById('btn-laboral');
     const inputLaboral = document.getElementById('input-laboral');
     const listaLaboral = document.getElementById('lista-laboral');
 
-    btnLaboral.addEventListener('click', function () {
+    function agregarLaboral() {
         const texto = inputLaboral.value.trim();
         if (texto !== '') {
             const nuevoItem = document.createElement('li');
+            nuevoItem.className = 'list-group-item';
             nuevoItem.textContent = texto;
             listaLaboral.appendChild(nuevoItem);
             inputLaboral.value = '';
         }
-    });
+    }
 
-    // Permitir agregar presionando Enter en el campo laboral
+    btnLaboral.addEventListener('click', agregarLaboral);
     inputLaboral.addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') {
-            btnLaboral.click();
-        }
+        if (e.key === 'Enter') agregarLaboral();
     });
 
     // Selección de foto de perfil
