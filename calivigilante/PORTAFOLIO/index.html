@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portafolio Personal</title>
+<style>
+    * { box-sizing: border-box; }
+    body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background-color: #f2f2f2;
+        margin: 0;
+        padding: 20px;
+        color: #222;
+    }
+    .contenedor {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+    .columna {
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 20px;
+        flex: 1;
+        min-width: 300px;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    h2 {
+        color: #c0392b;
+        border-bottom: 2px solid #c0392b;
+        padding-bottom: 5px;
+        margin-top: 0;
+    }
+    h3 {
+        border-bottom: 1px solid #999;
+        padding-bottom: 4px;
+    }
+    .presentacion {
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+        margin-bottom: 25px;
+    }
+    .foto-placeholder {
+        width: 100px;
+        height: 100px;
+        border: 2px dashed #999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 12px;
+        color: #777;
+        flex-shrink: 0;
+    }
+    .foto-placeholder input[type="file"] {
+        font-size: 10px;
+        width: 90px;
+    }
+    .texto-presentacion p {
+        margin: 0 0 8px 0;
+        border-bottom: 1px solid #ddd;
+    }
+    ul {
+        padding-left: 20px;
+        margin-top: 5px;
+    }
+    li {
+        margin-bottom: 6px;
+    }
+    .fila-agregar {
+        display: flex;
+        gap: 8px;
+        margin-top: 10px;
+        align-items: center;
+    }
+    .fila-agregar input[type="text"] {
+        flex: 1;
+        padding: 6px 8px;
+        border: 1px solid #bbb;
+        border-radius: 4px;
+    }
+    .btn-agregar {
+        width: 30px;
+        height: 30px;
+        border: 1px solid #555;
+        background: #eee;
+        border-radius: 4px;
+        font-weight: bold;
+        cursor: not-allowed;
+    }
+    footer {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 13px;
+        color: #777;
+        border-top: 1px solid #ddd;
+        padding-top: 10px;
+    }
+</style>
+</head>
+<body>
+
+<div class="contenedor">
+
+    <!-- Columna izquierda: Portafolio -->
+    <div class="columna">
+        <h2>Portafolio</h2>
+
+        <div class="presentacion">
+            <div class="foto-placeholder">
+            </div>
+            <div class="texto-presentacion">
+                <p> Mi nombre es Ever Jonatan Delgado Chaguendo, tengo 20 años de edad y soy estudiante de ingenieria en sistemas.</p>
+            </div>
+        </div>
+
+        <h3>Historial Académico</h3>
+        <ul id="lista-academica">
+            <li>Colegio: Institucion Educativa Insdustrial Luis Madina</li>
+            <li>Universidad: Universidad Santiago de Cali</li>
+            <li>Cursos y Diplomados: Diplomado en ciberseguridad de redes</li>
+        </ul>
+
+        <div class="fila-agregar">
+            <button class="btn-agregar" disabled>+</button>
+            <span> Agregar</span>
+        </div>
+    </div>
+
+    <!-- Columna derecha: Historial laboral -->
+    <div class="columna">
+        <h2>Historial laboral</h2>
+
+        <ul id="lista-laboral">
+            <li>Profesor de ecuaciones de manera informal</li>
+            <li>Cargador de mudanzas de manera informal</li>
+        </ul>
+
+        <div class="fila-agregar">
+            <button class="btn-agregar" disabled>+</button>
+            <input type="text" placeholder="Agregar" disabled>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    footer, 2026
+</footer>
+
+</body>
+</html>
