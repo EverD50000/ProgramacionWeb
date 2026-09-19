@@ -36,6 +36,7 @@
         margin-top: 0;
     }
     h3 {
+        color: #c0392b;
         border-bottom: 1px solid #999;
         padding-bottom: 4px;
     }
@@ -56,14 +57,42 @@
         font-size: 12px;
         color: #777;
         flex-shrink: 0;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+    }
+    .foto-placeholder img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: none;
     }
     .foto-placeholder input[type="file"] {
-        font-size: 10px;
-        width: 90px;
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+    }
+    .foto-placeholder span.texto-foto {
+        pointer-events: none;
     }
     .texto-presentacion p {
         margin: 0 0 8px 0;
         border-bottom: 1px solid #ddd;
+    }
+    #descripcion {
+        padding: 4px;
+        border-radius: 4px;
+        cursor: text;
+    }
+    #descripcion:hover {
+        background-color: #f9f9f9;
+    }
+    #descripcion:focus {
+        outline: 2px dashed #c0392b;
+        background-color: #fffaf0;
     }
     ul {
         padding-left: 20px;
@@ -91,7 +120,10 @@
         background: #eee;
         border-radius: 4px;
         font-weight: bold;
-        cursor: not-allowed;
+        cursor: pointer;
+    }
+    .btn-agregar:hover {
+        background: #ddd;
     }
     footer {
         text-align: center;
@@ -112,10 +144,13 @@
         <h2>Portafolio</h2>
 
         <div class="presentacion">
-            <div class="foto-placeholder">
-            </div>
+            <label class="foto-placeholder" for="input-foto">
+                <img id="foto-preview" src="" alt="Foto de perfil">
+                <span class="texto-foto" id="texto-foto">Elegir foto</span>
+                <input type="file" id="input-foto" accept="image/*">
+            </label>
             <div class="texto-presentacion">
-                <p> Mi nombre es Ever Jonatan Delgado Chaguendo, tengo 20 años de edad y soy estudiante de ingenieria en sistemas.</p>
+                <p id="descripcion" contenteditable="true" spellcheck="true">Mi nombre es Ever Jonatan Delgado Chaguendo, tengo 20 años de edad y soy estudiante de ingenieria en sistemas.</p>
             </div>
         </div>
 
@@ -127,8 +162,8 @@
         </ul>
 
         <div class="fila-agregar">
-            <button class="btn-agregar" disabled>+</button>
-            <span> Agregar</span>
+            <button class="btn-agregar" id="btn-academico">+</button>
+            <input type="text" id="input-academico" placeholder="Agregar">
         </div>
     </div>
 
@@ -142,8 +177,8 @@
         </ul>
 
         <div class="fila-agregar">
-            <button class="btn-agregar" disabled>+</button>
-            <input type="text" placeholder="Agregar" disabled>
+            <button class="btn-agregar" id="btn-laboral">+</button>
+            <input type="text" id="input-laboral" placeholder="Agregar">
         </div>
     </div>
 
@@ -152,6 +187,70 @@
 <footer>
     footer, 2026
 </footer>
+
+<script>
+    // Agregar ítem al Historial Académico (usa el cajón de texto que está al lado del botón)
+    const btnAcademico = document.getElementById('btn-academico');
+    const inputAcademico = document.getElementById('input-academico');
+    const listaAcademica = document.getElementById('lista-academica');
+
+    btnAcademico.addEventListener('click', function () {
+        const texto = inputAcademico.value.trim();
+        if (texto !== '') {
+            const nuevoItem = document.createElement('li');
+            nuevoItem.textContent = texto;
+            listaAcademica.appendChild(nuevoItem);
+            inputAcademico.value = '';
+        }
+    });
+
+    // Permitir agregar presionando Enter en el campo académico
+    inputAcademico.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            btnAcademico.click();
+        }
+    });
+
+    // Agregar ítem al Historial Laboral (usa el cajón de texto que está al lado del botón)
+    const btnLaboral = document.getElementById('btn-laboral');
+    const inputLaboral = document.getElementById('input-laboral');
+    const listaLaboral = document.getElementById('lista-laboral');
+
+    btnLaboral.addEventListener('click', function () {
+        const texto = inputLaboral.value.trim();
+        if (texto !== '') {
+            const nuevoItem = document.createElement('li');
+            nuevoItem.textContent = texto;
+            listaLaboral.appendChild(nuevoItem);
+            inputLaboral.value = '';
+        }
+    });
+
+    // Permitir agregar presionando Enter en el campo laboral
+    inputLaboral.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            btnLaboral.click();
+        }
+    });
+
+    // Selección de foto de perfil
+    const inputFoto = document.getElementById('input-foto');
+    const fotoPreview = document.getElementById('foto-preview');
+    const textoFoto = document.getElementById('texto-foto');
+
+    inputFoto.addEventListener('change', function () {
+        const archivo = this.files[0];
+        if (archivo) {
+            const lector = new FileReader();
+            lector.onload = function (e) {
+                fotoPreview.src = e.target.result;
+                fotoPreview.style.display = 'block';
+                textoFoto.style.display = 'none';
+            };
+            lector.readAsDataURL(archivo);
+        }
+    });
+</script>
 
 </body>
 </html>
